@@ -5,32 +5,56 @@
       "name": "제리",
       "role": "리더 선생님",
       "class": "린초2 토요일",
+      "tagline": "멋짐과 가르침을 겸비한 춤신춤왕",
       "emoji": "🕺",
-      "photo": "images/people/jerry.jpg"
+      "photo": "images/people/1-jerry/1.jpeg",
+      "stats": [
+        { "label": "멋짐", "value": 85 },
+        { "label": "가르침", "value": 70 },
+        { "label": "열정", "value": 75 }
+      ]
     },
     {
       "id": "redshoes",
       "name": "빨간구두",
       "role": "팔로워 선생님",
       "class": "린초2 토요일",
+      "tagline": "행복한 미소로 플로어를 밝히는 쌤",
       "emoji": "👠",
-      "photo": "images/people/redshoes.jpg"
+      "photo": "images/people/2-redshoes/1.jpeg",
+      "stats": [
+        { "label": "행복", "value": 90 },
+        { "label": "미소", "value": 75 },
+        { "label": "가르침", "value": 70 }
+      ]
     },
     {
       "id": "songhi",
       "name": "송히",
       "role": "팔로워 선생님",
       "class": "린초2 일요일",
+      "tagline": "밝은 에너지로 모두를 사로잡는 유쾌 캐릭터",
       "emoji": "💃",
-      "photo": "images/people/songhi.jpg"
+      "photo": "images/people/3-songhi/1.jpeg",
+      "stats": [
+        { "label": "에너지", "value": 95 },
+        { "label": "사랑", "value": 90 },
+        { "label": "유쾌", "value": 85 }
+      ]
     },
     {
       "id": "gray",
       "name": "그레이",
       "role": "리더 선생님",
       "class": "린초2 일요일",
+      "tagline": "이론부터 디테일까지, 자상한 설명왕",
       "emoji": "🎶",
-      "photo": "images/people/gray.jpg"
+      "photo": "images/people/4-gray/1.jpeg",
+      "stats": [
+        { "label": "설명력", "value": 90 },
+        { "label": "친절", "value": 80 },
+        { "label": "멋짐", "value": 75 }
+      ]
     }
   ],
   "helpers": [
@@ -38,50 +62,92 @@
       "id": "seobuk",
       "name": "서벅돔",
       "role": "도우미",
+      "tagline": "잔소리 뒤에 숨은 알뜰살뜰 챙김의 달인",
       "emoji": "⭐",
-      "photo": "images/people/seobuk.jpg"
+      "photo": "images/people/5-seobuk/badge-1.png",
+      "stats": [
+        { "label": "챙김", "value": 95 },
+        { "label": "디테일", "value": 80 },
+        { "label": "든든", "value": 85 }
+      ]
     },
     {
       "id": "hyo",
       "name": "효돔",
       "role": "도우미",
+      "tagline": "묵묵히 자리를 지키는 든든한 서포터",
       "emoji": "✨",
-      "photo": "images/people/hyo.jpg"
+      "photo": "images/people/6-hyo/badge-1.png",
+      "stats": [
+        { "label": "챙김", "value": 90 },
+        { "label": "도움", "value": 85 },
+        { "label": "친절", "value": 80 }
+      ]
     },
     {
       "id": "smaller",
       "name": "스말러돔",
       "role": "도우미",
+      "tagline": "웃지 않는 모습을 본 적 없는 해피 바이러스",
       "emoji": "🌟",
-      "photo": "images/people/smaller.jpg"
+      "photo": "images/people/7-smaller/1.jpeg",
+      "stats": [
+        { "label": "스마일", "value": 100 },
+        { "label": "행복", "value": 85 },
+        { "label": "챙김", "value": 80 }
+      ]
     },
     {
       "id": "danny",
       "name": "대니돔",
       "role": "도우미",
+      "tagline": "열정과 미소로 끝까지 함께한 멋진 돔",
       "emoji": "💫",
-      "photo": "images/people/danny.jpg"
+      "photo": "images/people/8-danny/1.jpg",
+      "stats": [
+        { "label": "열정", "value": 85 },
+        { "label": "멋짐", "value": 75 },
+        { "label": "소셜", "value": 80 }
+      ]
     },
     {
       "id": "iri",
       "name": "이리돔",
       "role": "도우미",
+      "tagline": "따뜻한 응원과 격려의 아이콘",
       "emoji": "🎵",
-      "photo": "images/people/iri.jpg"
+      "photo": "images/people/9-iri/badge-1.png",
+      "stats": [
+        { "label": "응원", "value": 95 },
+        { "label": "홀딩", "value": 80 },
+        { "label": "멋짐", "value": 75 }
+      ]
     },
     {
       "id": "dajeong",
       "name": "다정돔",
       "role": "도우미",
+      "tagline": "이름 그대로, 온화한 미소의 다정 그 자체",
       "emoji": "🌸",
-      "photo": "images/people/dajeong.jpg"
+      "photo": "images/people/10-dajeong/badge-1.png",
+      "stats": [
+        { "label": "다정", "value": 100 },
+        { "label": "홀딩", "value": 85 },
+        { "label": "미소", "value": 80 }
+      ]
     },
     {
       "id": "choco",
       "name": "초코돔",
       "role": "도우미",
+      "tagline": "소셜의 존재감, 달콤한 해피 바이러스",
       "emoji": "🍫",
-      "photo": "images/people/choco.jpg"
+      "photo": "images/people/11-choco/badge-1.png",
+      "stats": [
+        { "label": "멋짐", "value": 95 },
+        { "label": "소셜", "value": 85 },
+        { "label": "행복", "value": 80 }
+      ]
     }
   ]
 }

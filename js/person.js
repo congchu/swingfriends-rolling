@@ -6,11 +6,14 @@
 
 // 포스트잇 배경색 — 테마별로 theme.js에서 주입, 없으면 기본값
 const NOTE_COLORS = (window.SWING_THEME && window.SWING_THEME.notes) || [
-  "#fef9e7", // 크림
-  "#fde8d8", // 피치
-  "#ede8f5", // 라벤더
-  "#e3f0e8", // 민트
-  "#e3eef8", // 스카이
+  "#fef3e0", // 버터크림
+  "#fce4ec", // 로즈핑크
+  "#e8eaf6", // 라벤더블루
+  "#e0f2e9", // 민트그린
+  "#fff9c4", // 레몬옐로
+  "#f3e5f5", // 라일락
+  "#e0f7fa", // 아쿠아
+  "#fbe9e7", // 살몬피치
 ];
 
 // 결정론적 랜덤 (같은 인덱스 = 항상 같은 값, 새로고침해도 포스트잇 위치 안 바뀜)
@@ -76,56 +79,65 @@ function seededRandom(seed) {
   }
 })();
 
-// 인물별 baby 사진 번호 매핑
-const BABY_MAP = {
-  jerry: 1, redshoes: 2, songhi: 3, gray: 4,
-  seobuk: 5, hyo: 6, smaller: 7, danny: 8,
-  iri: 9, dajeong: 10, choco: 11
-};
+// PEOPLE_FOLDER는 js/paths.js에서 로드됨
 
 function renderHeader(person, count) {
-  // 이름 & 역할
+  // 이름 & 태그라인
   document.getElementById("personRoleBadge").textContent =
-    '//' + (person.class ? `${person.role} · ${person.class}` : person.role).toUpperCase();
+    '//' + (person.tagline || (person.class ? `${person.role} · ${person.class}` : person.role));
   document.getElementById("personName").textContent = person.name;
 
-  // 메시지 카운트
-  const countEl = document.getElementById("personMessageCount");
-  countEl.innerHTML = count > 0
-    ? `<strong>${count}</strong>개의 감사 메시지`
-    : "아직 메시지가 없어요";
+  // 키워드 스탯바 렌더링 (people.json의 stats 데이터 사용)
+  const statsContainer = document.getElementById("charStats");
+  const stats = person.stats || [
+    { label: "ROLE", value: 85 },
+    { label: "GROOVE", value: 70 },
+    { label: "MESSAGES", value: 50 }
+  ];
+  statsContainer.innerHTML = stats.map(s =>
+    `<div class="char-stat">
+      <span class="char-stat-label">${s.label}</span>
+      <div class="char-stat-bar"><div class="char-stat-fill" style="width:${s.value}%"></div></div>
+    </div>`
+  ).join('');
 
-  // 메시지 스탯바 (최대 20개 기준 비율)
-  const msgBar = document.getElementById("msgStatBar");
-  if (msgBar) msgBar.style.width = Math.min(100, (count / 20) * 100) + '%';
-
-  // 랜덤 스탯바
-  const fills = document.querySelectorAll('.char-stat-fill:not(#msgStatBar)');
-  fills.forEach(f => { f.style.width = (50 + Math.random() * 50) + '%'; });
-
-  // Baby 사진 슬라이더
-  const num = BABY_MAP[person.id] || 1;
-  const photo1 = document.getElementById("personPhoto");
-  const photo2 = document.getElementById("personPhoto2");
-  photo1.src = `images/baby/${num}_${person.id}-1.png`;
-  photo1.alt = person.name;
-  photo2.src = `images/baby/${num}_${person.id}-2.png`;
-  photo2.alt = person.name;
-
-  // 슬라이더 로직
+  // 사진 슬라이더 — 인물별 사진 수에 맞게 동적 생성
+  const folder = PEOPLE_FOLDER[person.id];
+  const photos = PEOPLE_PHOTOS[person.id] || [];
   const slider = document.getElementById("charSlider");
-  const dots = document.querySelectorAll(".char-dot");
-  let current = 0;
+  const dotsContainer = document.getElementById("charDots");
+  const photoArea = document.querySelector(".char-photo-area");
 
-  function goTo(idx) {
-    current = idx;
-    slider.style.transform = `translateX(-${idx * 50}%)`;
-    dots.forEach((d, i) => d.classList.toggle("active", i === idx));
+  if (photos.length === 0 || !folder) {
+    // 사진 없으면 슬라이더 영역 숨김
+    if (photoArea) photoArea.style.display = 'none';
+  } else {
+    // 슬라이더 이미지 동적 생성
+    slider.style.width = `${photos.length * 100}%`;
+    slider.innerHTML = photos.map(f =>
+      `<img src="${PEOPLE_DIR}/${folder}/${f}" alt="${person.name}" class="char-photo" style="width:${100 / photos.length}%">`
+    ).join('');
+
+    // 도트 동적 생성
+    dotsContainer.innerHTML = photos.map((_, i) =>
+      `<span class="char-dot${i === 0 ? ' active' : ''}"></span>`
+    ).join('');
+    const dots = dotsContainer.querySelectorAll(".char-dot");
+
+    let current = 0;
+    function goTo(idx) {
+      current = idx;
+      slider.style.transform = `translateX(-${idx * (100 / photos.length)}%)`;
+      dots.forEach((d, i) => d.classList.toggle("active", i === idx));
+    }
+
+    document.getElementById("charPrev").onclick = () => goTo((current - 1 + photos.length) % photos.length);
+    document.getElementById("charNext").onclick = () => goTo((current + 1) % photos.length);
+    dots.forEach((d, i) => { d.onclick = () => goTo(i); });
+
+    // 1초마다 자동 슬라이드
+    setInterval(() => goTo((current + 1) % photos.length), 1500);
   }
-
-  document.getElementById("charPrev").onclick = () => goTo(current === 0 ? 1 : 0);
-  document.getElementById("charNext").onclick = () => goTo(current === 1 ? 0 : 1);
-  dots.forEach((d, i) => { d.onclick = () => goTo(i); });
 }
 
 function renderNavPeople(allPeople, currentIdx) {

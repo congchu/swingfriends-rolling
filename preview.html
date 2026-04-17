@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이미지 미리보기</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #1a1a2e;
+            color: #eee;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1.8rem;
+            color: #f8d76b;
+        }
+        .person-section {
+            margin-bottom: 40px;
+            background: #16213e;
+            border-radius: 12px;
+            padding: 20px;
+        }
+        .person-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 16px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 10px;
+        }
+        .person-header h2 {
+            font-size: 1.3rem;
+            color: #f8d76b;
+        }
+        .person-header .role {
+            font-size: 0.85rem;
+            color: #aaa;
+        }
+        .image-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .image-card {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #0f3460;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .image-card:hover {
+            transform: scale(1.03);
+        }
+        .image-card img {
+            display: block;
+            height: 200px;
+            width: auto;
+            max-width: 300px;
+            object-fit: contain;
+            background: #0a0a1a;
+        }
+        .image-card .label {
+            font-size: 0.7rem;
+            color: #aaa;
+            padding: 4px 8px;
+            text-align: center;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .section-title {
+            font-size: 1.1rem;
+            color: #e94560;
+            margin: 30px 0 15px;
+        }
+
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            cursor: zoom-out;
+        }
+        .lightbox.active { display: flex; }
+        .lightbox img {
+            max-width: 90vw;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <h1>SwingFriends 이미지 미리보기</h1>
+    <div id="content"></div>
+    <div class="lightbox" id="lightbox" onclick="this.classList.remove('active')">
+        <img id="lightbox-img" src="" alt="">
+    </div>
+
+    <script src="js/paths.js"></script>
+    <script>
+        function openLightbox(src) {
+            document.getElementById('lightbox-img').src = src;
+            document.getElementById('lightbox').classList.add('active');
+        }
+
+        function makeCard(src, label) {
+            return `<div class="image-card" onclick="openLightbox('${src}')">
+                <img src="${src}" alt="${label}" loading="lazy">
+                <div class="label">${label}</div>
+            </div>`;
+        }
+
+        fetch('data/people.json')
+          .then(r => r.json())
+          .then(data => {
+            const allPeople = [...data.teachers, ...data.helpers];
+            let html = '';
+
+            allPeople.forEach(p => {
+                const folder = PEOPLE_FOLDER[p.id];
+                const badges = PEOPLE_BADGES[p.id] || [];
+                const photos = PEOPLE_PHOTOS[p.id] || [];
+                const allFiles = [...photos, ...badges.filter(b => !photos.includes(b))];
+
+                html += `<div class="person-section">
+                    <div class="person-header">
+                        <h2>${p.emoji} ${p.name}</h2>
+                        <span class="role">${p.role}</span>
+                    </div>
+                    <div class="image-grid">`;
+
+                allFiles.forEach(f => {
+                    const src = `${PEOPLE_DIR}/${folder}/${f}`;
+                    html += makeCard(src, f);
+                });
+
+                html += `</div></div>`;
+            });
+
+            document.getElementById('content').innerHTML = html;
+          });
+    </script>
+</body>
+</html>

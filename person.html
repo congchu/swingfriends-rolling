@@ -4,6 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>롤링페이퍼 | 스윙프렌즈</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="images/favicon_io (2)/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon_io (2)/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="images/favicon_io (2)/favicon-16x16.png">
+  <link rel="icon" type="image/x-icon" href="images/favicon_io (2)/favicon.ico">
   <!-- 환경 설정 & 테마 즉시 적용 (FOUC 방지) -->
   <script src="js/env.js"></script>
   <script src="js/theme.js"></script>
@@ -44,7 +48,7 @@
     }
 
     .char-hero {
-      background: #1a1a2e;
+      background: transparent;
       padding: 40px 20px 32px;
       display: flex;
       align-items: center;
@@ -70,22 +74,6 @@
       overflow: hidden;
     }
 
-    /* CRT 스캔라인 오버레이 */
-    .char-box::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: repeating-linear-gradient(
-        0deg,
-        transparent,
-        transparent 2px,
-        rgba(0,0,0,.12) 2px,
-        rgba(0,0,0,.12) 4px
-      );
-      pointer-events: none;
-      z-index: 5;
-      border-radius: 18px;
-    }
 
     .char-inner {
       display: flex;
@@ -93,6 +81,10 @@
       gap: 32px;
       position: relative;
       z-index: 1;
+    }
+
+    .char-inner > * {
+      width: 100%;
     }
 
     /* 왼쪽 텍스트 */
@@ -104,7 +96,7 @@
     .char-sub {
       display: block;
       font-family: 'RoundedFixedsys', monospace;
-      font-size: .72rem;
+      font-size: 1rem;
       letter-spacing: .15em;
       color: rgba(255,140,160,.7);
       margin-bottom: 8px;
@@ -136,14 +128,14 @@
     .char-stat-label {
       display: block;
       font-family: 'RoundedFixedsys', monospace;
-      font-size: .55rem;
+      font-size: .85rem;
       letter-spacing: .12em;
       color: rgba(255,255,255,.45);
       margin-bottom: 6px;
     }
 
     .char-stat-bar {
-      height: 10px;
+      height: 14px;
       background: rgba(255,255,255,.08);
       border-radius: 2px;
       overflow: hidden;
@@ -175,25 +167,17 @@
       box-shadow: 0 0 6px rgba(255,107,138,.4);
     }
 
-    .char-msg-count {
-      font-family: 'RoundedFixedsys', monospace;
-      font-size: .72rem;
-      color: rgba(255,255,255,.35);
-      margin-top: 4px;
-    }
-    .char-msg-count strong {
-      color: #ff9eaf;
-    }
-
     /* 오른쪽 사진 */
     .char-photo-area {
       flex-shrink: 0;
-      width: clamp(160px, 38%, 280px);
-      aspect-ratio: 3/4;
+      width: 100%;
+      max-width: 360px;
+      aspect-ratio: 3/2.67;
       overflow: hidden;
       border-radius: 10px;
       position: relative;
     }
+
 
     .char-photo-slider {
       display: flex;
@@ -206,9 +190,26 @@
       width: 50%;
       height: 100%;
       object-fit: cover;
+      object-position: center;
+      filter: contrast(1.08) saturate(0.82) sepia(0.08) brightness(1.03);
     }
 
-    /* 좌우 화살표 */
+    /* 캠코더 비네팅 */
+    .char-photo-area::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(
+        ellipse at center,
+        transparent 55%,
+        rgba(0,0,0,.35) 100%
+      );
+      pointer-events: none;
+      z-index: 3;
+      border-radius: 10px;
+    }
+
+    /* 좌우 화살표 — 이미지 좌/우에 붙음 */
     .char-arrow {
       position: absolute;
       top: 50%;
@@ -235,8 +236,8 @@
       box-shadow: 0 0 12px rgba(255,100,140,.3);
     }
 
-    .char-arrow--left { left: -18px; }
-    .char-arrow--right { right: -18px; }
+    .char-arrow--left { left: 8px; }
+    .char-arrow--right { right: 8px; }
 
     /* 도트 */
     .char-dots {
@@ -266,10 +267,10 @@
     @media (max-width: 600px) {
       .char-box { padding: 28px 20px 20px; }
       .char-inner { flex-direction: column-reverse; gap: 20px; }
-      .char-photo-area { width: 65%; align-self: center; }
+      .char-photo-area { width: 100%; align-self: center; }
       .char-stats { gap: 10px; }
-      .char-arrow--left { left: -10px; }
-      .char-arrow--right { right: -10px; }
+      .char-arrow--left { left: 6px; }
+      .char-arrow--right { right: 6px; }
     }
 
     .loading-overlay {
@@ -287,8 +288,8 @@
       visibility: hidden;
     }
     .loading-ddakji {
-      width: 160px;
-      height: 160px;
+      width: 200px;
+      height: 200px;
       perspective: 400px;
       animation: ddakji-bounce .6s ease-in-out infinite;
     }
@@ -309,8 +310,9 @@
       box-shadow: 0 4px 20px rgba(0,0,0,.15);
     }
     .ddakji-front img, .ddakji-back img {
-      width: 100%;
-      height: 100%;
+      width: 110%;
+      height: 110%;
+      margin: -5%;
       object-fit: cover;
     }
     .ddakji-back {
@@ -325,13 +327,134 @@
       50%  { transform: rotateY(180deg); }
       100% { transform: rotateY(360deg); }
     }
+
+    /* ===== index.html people-section 스타일 통일 ===== */
+    .person-body {
+      background:
+        radial-gradient(ellipse 80% 50% at 20% 20%, rgba(255,180,220,.35) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 40% at 80% 30%, rgba(200,160,255,.3) 0%, transparent 50%),
+        radial-gradient(circle at 50% 80%, rgba(255,200,150,.2) 0%, transparent 50%),
+        linear-gradient(160deg, #2a1028 0%, #1a0a2e 40%, #0d0520 100%);
+      background-attachment: fixed;
+      color: #fff;
+    }
+
+    .loading-overlay {
+      background: #1a0a2e;
+    }
+    .loading-ddakji .ddakji-front,
+    .loading-ddakji .ddakji-back {
+      border-color: rgba(255,140,160,.55);
+    }
+
+    /* nav — 다크 네온 */
+    .person-nav {
+      background: rgba(10,5,20,.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,140,160,.2);
+      box-shadow: 0 2px 20px rgba(0,0,0,.4);
+    }
+    .nav-back {
+      color: rgba(255,180,210,.8);
+      border-color: rgba(255,140,160,.3);
+    }
+    .nav-back:hover {
+      background: rgba(255,100,140,.15);
+      color: #fff;
+    }
+    .nav-person-btn {
+      border-color: rgba(255,200,230,.2);
+      color: rgba(255,200,230,.6);
+    }
+    .nav-person-btn:hover {
+      border-color: rgba(255,140,160,.5);
+      color: rgba(255,200,230,.9);
+    }
+    .nav-person-btn.active {
+      background: rgba(255,100,140,.3);
+      border-color: rgba(255,140,160,.6);
+      color: #fff;
+    }
+
+    /* corkboard — 다크 테마 */
+    .corkboard {
+      background: transparent;
+      min-height: calc(100vh - var(--nav-h, 56px) - 220px);
+      padding: 40px 16px 100px;
+    }
+
+    /* postit — 밝은 파스텔 카드 (레트로) */
+    .postit {
+      background: var(--note-bg, #fef3e0);
+      border: 1.5px solid rgba(0,0,0,.08);
+      border-radius: 4px;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+      box-shadow:
+        3px 4px 14px rgba(0,0,0,.18),
+        inset 0 -3px 0 rgba(0,0,0,.06);
+      transform: rotate(var(--rot, 0deg));
+    }
+    .postit:hover {
+      transform: rotate(0deg) scale(1.04) translateY(-4px);
+      border-color: rgba(0,0,0,.12);
+      box-shadow:
+        6px 8px 28px rgba(0,0,0,.22),
+        inset 0 -3px 0 rgba(0,0,0,.06);
+    }
+    .postit::before {
+      background: radial-gradient(circle at 35% 35%, #ff6b9d, #c0204a);
+      box-shadow: 0 2px 6px rgba(0,0,0,.4), 0 0 8px rgba(255,100,140,.3);
+    }
+    .postit::after {
+      display: block;
+      border-color: transparent transparent rgba(0,0,0,.08) transparent;
+    }
+    .postit-message {
+      color: #2c1810;
+    }
+    .postit-from {
+      color: #6b3d2a;
+      border-top-color: rgba(44,24,16,.15);
+    }
+
+    /* empty state */
+    .empty-state .empty-text {
+      color: rgba(255,200,230,.8);
+    }
+    .empty-state .empty-sub {
+      color: rgba(255,180,210,.5);
+    }
+
+    /* 하단 이전/다음 버튼 */
+    .arrow-btn {
+      background: rgba(10,5,20,.8);
+      color: rgba(255,180,210,.8);
+      border-color: rgba(255,140,160,.3);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      box-shadow: 0 4px 20px rgba(0,0,0,.3);
+    }
+    .arrow-btn:hover {
+      background: rgba(255,100,140,.2);
+      border-color: rgba(255,140,160,.5);
+      color: #fff;
+    }
   </style>
+  <script src="js/paths.js"></script>
   <script>
     (function() {
-      var babies = ['images/baby/1_jerry-1.png','images/baby/2_redshoes-1.png','images/baby/3_songhi-1.png','images/baby/4_gray-1.png'];
-      var shuffled = babies.sort(function() { return Math.random() - 0.5; });
-      document.getElementById('ddakjiImg').src = shuffled[0];
-      document.getElementById('ddakjiImgBack').src = shuffled[1];
+      var params = new URLSearchParams(location.search);
+      var id = params.get('id');
+      var folder = id && PEOPLE_FOLDER[id];
+      var badges = id && PEOPLE_BADGES[id];
+      if (folder && badges && badges.length > 0) {
+        var imgs = badges.map(function(b) { return PEOPLE_DIR + '/' + folder + '/' + b; });
+        var shuffled = imgs.sort(function() { return Math.random() - 0.5; });
+        document.getElementById('ddakjiImg').src = shuffled[0];
+        document.getElementById('ddakjiImgBack').src = shuffled[1 % shuffled.length];
+      }
     })();
   </script>
 
@@ -349,38 +472,24 @@
   <!-- ===== CHARACTER SELECT HERO ===== -->
   <section class="char-hero" id="personHeader">
     <div class="char-box">
-      <!-- 좌우 슬라이드 버튼 -->
-      <button class="char-arrow char-arrow--left" id="charPrev">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg>
-      </button>
-      <button class="char-arrow char-arrow--right" id="charNext">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg>
-      </button>
-
       <div class="char-inner">
         <!-- 왼쪽: 텍스트 -->
         <div class="char-info">
           <span class="char-sub" id="personRoleBadge">//CHOOSE CHARACTER</span>
           <h1 class="char-name" id="personName"></h1>
-          <div class="char-stats">
-            <div class="char-stat">
-              <span class="char-stat-label">ROLE</span>
-              <div class="char-stat-bar"><div class="char-stat-fill" style="width:85%"></div></div>
-            </div>
-            <div class="char-stat">
-              <span class="char-stat-label">GROOVE</span>
-              <div class="char-stat-bar"><div class="char-stat-fill" style="width:70%"></div></div>
-            </div>
-            <div class="char-stat">
-              <span class="char-stat-label">MESSAGES</span>
-              <div class="char-stat-bar"><div class="char-stat-fill" id="msgStatBar" style="width:50%"></div></div>
-            </div>
+          <div class="char-stats" id="charStats">
+            <!-- JS에서 인물별 키워드 스탯으로 동적 렌더링 -->
           </div>
-          <p class="char-msg-count" id="personMessageCount"></p>
         </div>
 
         <!-- 오른쪽: 사진 슬라이더 -->
         <div class="char-photo-area">
+          <button class="char-arrow char-arrow--left" id="charPrev">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <button class="char-arrow char-arrow--right" id="charNext">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
           <div class="char-photo-slider" id="charSlider">
             <img src="" alt="" class="char-photo" id="personPhoto">
             <img src="" alt="" class="char-photo" id="personPhoto2">
