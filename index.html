@@ -293,7 +293,7 @@
       font-size: clamp(.9rem, 2.5vw, 1.4rem);
       letter-spacing: .3em;
       color: rgba(255,255,255,.5);
-      margin-top: 6px;
+      margin-top: 12px;
     }
 
     /* ===== SCROLL HINT ===== */
@@ -430,6 +430,30 @@
       letter-spacing: .1em;
     }
 
+    .group-photo-btn {
+      display: block;
+      max-width: 320px;
+      margin: 48px auto 0;
+      padding: 16px 28px;
+      text-align: center;
+      text-decoration: none;
+      font-family: 'RoundedFixedsys', monospace;
+      font-size: clamp(1rem, 2.5vw, 1.15rem);
+      letter-spacing: .08em;
+      color: #fff;
+      background: rgba(255,100,140,.2);
+      border: 2px solid rgba(255,140,160,.5);
+      border-radius: 12px;
+      transition: all .3s;
+      box-shadow: 0 0 20px rgba(255,100,140,.1);
+    }
+    .group-photo-btn:hover {
+      background: rgba(255,100,140,.35);
+      border-color: rgba(255,220,240,.8);
+      box-shadow: 0 0 30px rgba(255,105,180,.25);
+      transform: translateY(-3px);
+    }
+
     @media (max-width: 600px) {
       #shelves { max-width: 340px; gap: 14px; }
     }
@@ -481,11 +505,11 @@
 
       /* 왼쪽 TV → 위 중앙 */
       :nth-child(1 of .tv-wrap) {
-        translate: -50% -105%;
+        translate: -50% -100%;
       }
       /* 오른쪽 TV → 아래 중앙 */
       :nth-child(2 of .tv-wrap) {
-        translate: -50% 0%;
+        translate: -50% 10%;
       }
       :nth-child(2 of .tv-wrap) img.tv {
         rotate: y 180deg;
@@ -561,10 +585,12 @@
 
   <!-- ===== PEOPLE (선반 스타일) ===== -->
   <section class="people-section" id="people">
-    <h2 class="section-title">롤링페이퍼</h2>
-    <p class="section-sub">한 학기 동안 함께해주셔서 감사합니다</p>
+    <h2 class="section-title">감사 롤링페이퍼</h2>
+    <p class="section-sub">우리의 스윙은 여기서 끝나지 않아요</p>
 
     <div id="shelves"></div>
+
+    <a class="group-photo-btn" href="gallery.html">📸 단체사진 모아보기</a>
   </section>
 
   <script src="js/paths.js"></script>
@@ -644,7 +670,6 @@
         const badge = (folder && badges.length) ? `${PEOPLE_DIR}/${folder}/${badges[0]}` : '';
         html += `
           <a class="shelf-item" href="person.html?id=${p.id}">
-            ${badge ? `<img class="shelf-item-photo" src="${badge}" alt="${p.name}">` : ''}
             <div class="shelf-item-info">
               <span class="shelf-item-name">${p.name}</span>
               <span class="shelf-item-role">${p.role || ''}</span>
