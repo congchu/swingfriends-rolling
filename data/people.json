@@ -7,11 +7,20 @@
       "class": "린초2 토요일",
       "tagline": "멋짐과 가르침을 겸비한 춤신춤왕",
       "emoji": "🕺",
-      "photo": "images/people/1-jerry/1.jpeg",
+      "photo": "images/people/1-jerry/1.webp",
       "stats": [
-        { "label": "멋짐", "value": 85 },
-        { "label": "가르침", "value": 70 },
-        { "label": "열정", "value": 75 }
+        {
+          "label": "멋짐",
+          "value": 85
+        },
+        {
+          "label": "가르침",
+          "value": 70
+        },
+        {
+          "label": "열정",
+          "value": 75
+        }
       ]
     },
     {
@@ -21,11 +30,20 @@
       "class": "린초2 토요일",
       "tagline": "행복한 미소로 플로어를 밝히는 쌤",
       "emoji": "👠",
-      "photo": "images/people/2-redshoes/1.jpeg",
+      "photo": "images/people/2-redshoes/1.webp",
       "stats": [
-        { "label": "행복", "value": 90 },
-        { "label": "미소", "value": 75 },
-        { "label": "가르침", "value": 70 }
+        {
+          "label": "행복",
+          "value": 90
+        },
+        {
+          "label": "미소",
+          "value": 75
+        },
+        {
+          "label": "가르침",
+          "value": 70
+        }
       ]
     },
     {
@@ -35,11 +53,20 @@
       "class": "린초2 일요일",
       "tagline": "밝은 에너지로 모두를 사로잡는 유쾌 캐릭터",
       "emoji": "💃",
-      "photo": "images/people/3-songhi/1.jpeg",
+      "photo": "images/people/3-songhi/1.webp",
       "stats": [
-        { "label": "에너지", "value": 95 },
-        { "label": "사랑", "value": 90 },
-        { "label": "유쾌", "value": 85 }
+        {
+          "label": "에너지",
+          "value": 95
+        },
+        {
+          "label": "사랑",
+          "value": 90
+        },
+        {
+          "label": "유쾌",
+          "value": 85
+        }
       ]
     },
     {
@@ -49,11 +76,20 @@
       "class": "린초2 일요일",
       "tagline": "이론부터 디테일까지, 자상한 설명왕",
       "emoji": "🎶",
-      "photo": "images/people/4-gray/1.jpeg",
+      "photo": "images/people/4-gray/1.webp",
       "stats": [
-        { "label": "설명력", "value": 90 },
-        { "label": "친절", "value": 80 },
-        { "label": "멋짐", "value": 75 }
+        {
+          "label": "설명력",
+          "value": 90
+        },
+        {
+          "label": "친절",
+          "value": 80
+        },
+        {
+          "label": "멋짐",
+          "value": 75
+        }
       ]
     }
   ],
@@ -64,11 +100,20 @@
       "role": "도우미님",
       "tagline": "잔소리 뒤에 숨은 알뜰살뜰 챙김의 달인",
       "emoji": "⭐",
-      "photo": "images/people/5-seobuk/badge-2.jpg",
+      "photo": "images/people/5-seobuk/badge-2.webp",
       "stats": [
-        { "label": "챙김", "value": 95 },
-        { "label": "디테일", "value": 80 },
-        { "label": "든든", "value": 85 }
+        {
+          "label": "챙김",
+          "value": 95
+        },
+        {
+          "label": "디테일",
+          "value": 80
+        },
+        {
+          "label": "든든",
+          "value": 85
+        }
       ]
     },
     {
@@ -77,11 +122,20 @@
       "role": "도우미님",
       "tagline": "묵묵히 자리를 지키는 든든한 서포터",
       "emoji": "✨",
-      "photo": "images/people/6-hyo/badge-1.jpg",
+      "photo": "images/people/6-hyo/badge-1.webp",
       "stats": [
-        { "label": "챙김", "value": 90 },
-        { "label": "도움", "value": 85 },
-        { "label": "친절", "value": 80 }
+        {
+          "label": "챙김",
+          "value": 90
+        },
+        {
+          "label": "도움",
+          "value": 85
+        },
+        {
+          "label": "친절",
+          "value": 80
+        }
       ]
     },
     {
@@ -90,11 +144,20 @@
       "role": "도우미님",
       "tagline": "웃지 않는 모습을 본 적 없는 해피 바이러스",
       "emoji": "🌟",
-      "photo": "images/people/7-smaller/1.jpeg",
+      "photo": "images/people/7-smaller/1.webp",
       "stats": [
-        { "label": "스마일", "value": 100 },
-        { "label": "행복", "value": 85 },
-        { "label": "챙김", "value": 80 }
+        {
+          "label": "스마일",
+          "value": 100
+        },
+        {
+          "label": "행복",
+          "value": 85
+        },
+        {
+          "label": "챙김",
+          "value": 80
+        }
       ]
     },
     {
@@ -103,11 +166,20 @@
       "role": "도우미님",
       "tagline": "열정과 미소로 끝까지 함께한 멋진 돔",
       "emoji": "💫",
-      "photo": "images/people/8-danny/1.jpg",
+      "photo": "images/people/8-danny/1.webp",
       "stats": [
-        { "label": "열정", "value": 85 },
-        { "label": "멋짐", "value": 75 },
-        { "label": "소셜", "value": 80 }
+        {
+          "label": "열정",
+          "value": 85
+        },
+        {
+          "label": "멋짐",
+          "value": 75
+        },
+        {
+          "label": "소셜",
+          "value": 80
+        }
       ]
     },
     {
@@ -116,11 +188,20 @@
       "role": "도우미님",
       "tagline": "따뜻한 응원과 격려의 아이콘",
       "emoji": "🎵",
-      "photo": "images/people/9-iri/badge-1.jpg",
+      "photo": "images/people/9-iri/badge-1.webp",
       "stats": [
-        { "label": "응원", "value": 95 },
-        { "label": "홀딩", "value": 80 },
-        { "label": "멋짐", "value": 75 }
+        {
+          "label": "응원",
+          "value": 95
+        },
+        {
+          "label": "홀딩",
+          "value": 80
+        },
+        {
+          "label": "멋짐",
+          "value": 75
+        }
       ]
     },
     {
@@ -129,11 +210,20 @@
       "role": "도우미님",
       "tagline": "이름 그대로, 온화한 미소의 다정 그 자체",
       "emoji": "🌸",
-      "photo": "images/people/10-dajeong/badge-1.jpg",
+      "photo": "images/people/10-dajeong/badge-1.webp",
       "stats": [
-        { "label": "다정", "value": 100 },
-        { "label": "홀딩", "value": 85 },
-        { "label": "미소", "value": 80 }
+        {
+          "label": "다정",
+          "value": 100
+        },
+        {
+          "label": "홀딩",
+          "value": 85
+        },
+        {
+          "label": "미소",
+          "value": 80
+        }
       ]
     },
     {
@@ -142,11 +232,20 @@
       "role": "도우미님",
       "tagline": "소셜의 존재감, 달콤한 해피 바이러스",
       "emoji": "🍫",
-      "photo": "images/people/11-choco/badge-1.jpg",
+      "photo": "images/people/11-choco/badge-1.webp",
       "stats": [
-        { "label": "멋짐", "value": 95 },
-        { "label": "소셜", "value": 85 },
-        { "label": "행복", "value": 80 }
+        {
+          "label": "멋짐",
+          "value": 95
+        },
+        {
+          "label": "소셜",
+          "value": 85
+        },
+        {
+          "label": "행복",
+          "value": 80
+        }
       ]
     }
   ]
