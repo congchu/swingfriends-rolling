@@ -84,7 +84,7 @@ function seededRandom(seed) {
 function renderHeader(person, count) {
   // 이름 & 태그라인
   const subText = '//' + (person.tagline || (person.class ? `${person.role} · ${person.class}` : person.role));
-  document.getElementById("personRoleBadge").innerHTML = subText.split(' ').join('<br>');
+  document.getElementById("personRoleBadge").textContent = subText;
   document.getElementById("personName").textContent = person.name;
 
   // 키워드 스탯바 렌더링 (people.json의 stats 데이터 사용)

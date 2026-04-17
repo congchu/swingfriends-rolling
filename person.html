@@ -64,6 +64,8 @@
       align-items: center;
       justify-content: center;
       position: relative;
+      max-width: 1200px;
+      margin: 0 auto;
     }
 
     .char-box {
@@ -110,8 +112,7 @@
       letter-spacing: .15em;
       color: rgba(255,140,160,.7);
       margin-bottom: 8px;
-      word-break: keep-all;
-      overflow-wrap: break-word;
+      white-space: nowrap;
     }
 
     .char-name {
@@ -393,7 +394,7 @@
     .corkboard {
       background: transparent;
       min-height: calc(100vh - var(--nav-h, 56px) - 220px);
-      padding: 40px 16px 100px;
+      padding: 40px 24px 100px;
     }
 
     /* postit — 밝은 파스텔 카드 (레트로) */

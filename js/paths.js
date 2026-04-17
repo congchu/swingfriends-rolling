@@ -40,14 +40,14 @@ const PEOPLE_BADGES = {
 
 // 활동 사진 (person.html 슬라이더용)
 const PEOPLE_PHOTOS = {
-  jerry: ['1.webp', '2.webp', '3.webp', '5.webp', '6.webp', '6.webp', '9.webp', '8.webp', '7.webp', '11.webp'],
-  redshoes: ['1.webp', '2.webp', '3.webp', '5.webp', '6.webp', '7.webp', '7.webp'],
+  jerry: ['1.webp', '2.webp', '3.webp', '5.webp', '6.webp', '9.webp', '8.webp', '7.webp', '11.webp'],
+  redshoes: ['1.webp', '2.webp', '3.webp', '5.webp', '6.webp', '7.webp'],
   songhi: ['14.webp', '2.webp', '3.webp', '4.webp', '13.webp', '6.webp', '7.webp', '9.webp', '10.webp', '11.webp', '12.webp'],
-  gray: ['1.webp', '2.webp', '3.webp', '5.webp', '6.webp', '6.webp', '7.webp', '8.webp', '9.webp', '11.webp', '12.webp', '13.webp'],
+  gray: ['1.webp', '2.webp', '3.webp', '5.webp', '6.webp', '7.webp', '8.webp', '9.webp', '11.webp', '12.webp', '13.webp'],
   seobuk: ['1.webp', '2.webp', '3.webp', '4.webp', '5.webp', '6.webp', '8.webp', '10.webp'],
   hyo: ['1.webp', '3.webp', '4.webp', '5.webp'],
-  smaller: ['1.webp', '2.webp', '3.webp', '5.webp', '6.webp', '6.webp', '7.webp', '8.webp', '9.webp'],
-  danny: ['2.webp', '3.webp', '4.webp', '5.webp', '5.webp'],
+  smaller: ['1.webp', '2.webp', '3.webp', '5.webp', '6.webp', '7.webp', '8.webp', '9.webp'],
+  danny: ['2.webp', '3.webp', '4.webp', '5.webp'],
   iri: ['1.webp', '2.webp'],
   dajeong: ['1.webp', '2.webp', '3.webp', '4.webp', '5.webp'],
   choco: ['3.webp', '1.webp', '2.webp']

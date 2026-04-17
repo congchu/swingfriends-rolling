@@ -937,18 +937,21 @@ img { display: block; max-width: 100%; }
 .corkboard-inner {
   max-width: var(--max-w);
   margin: 0 auto;
-  columns: 1;
-  column-gap: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
 }
 
-@media (min-width: 520px) {
-  .corkboard-inner { columns: 2; }
+.corkboard-inner .postit {
+  flex: 0 1 280px;
 }
-@media (min-width: 900px) {
-  .corkboard-inner { columns: 3; column-gap: 24px; }
-}
-@media (min-width: 1200px) {
-  .corkboard-inner { columns: 4; }
+
+@media (max-width: 600px) {
+  .corkboard-inner .postit {
+    flex: 1 1 100%;
+    max-width: 420px;
+  }
 }
 
 /* --- Post-it Note --- */
