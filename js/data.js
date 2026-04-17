@@ -122,8 +122,8 @@ async function fetchSheetRows() {
  * 로컬 CSV에서 메시지 로드 (폴백)
  */
 async function loadMessagesFromCSV() {
-  const res = await fetch("data/messages.csv");
-  if (!res.ok) throw new Error("messages.csv 로드 실패");
+  const res = await fetch("data/린초 2_3 감사인사 - 설문지 응답 시트1.csv");
+  if (!res.ok) throw new Error("CSV 로드 실패");
   const text = await res.text();
 
   const parsed = Papa.parse(text, {
@@ -132,7 +132,7 @@ async function loadMessagesFromCSV() {
     transformHeader: h => h.trim(),
   });
 
-  return parseRows(parsed.data, COLUMN_MAP_CSV, SENDER_COLUMN_CSV);
+  return parseRows(parsed.data, COLUMN_MAP, SENDER_COLUMN);
 }
 
 /**
