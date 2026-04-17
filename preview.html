@@ -147,6 +147,23 @@
                 html += `</div></div>`;
             });
 
+            // 그룹 포토
+            if (GROUP_PHOTOS.length > 0) {
+                html += `<div class="person-section">
+                    <div class="person-header">
+                        <h2>📸 단체 사진</h2>
+                        <span class="role">Group Photos</span>
+                    </div>
+                    <div class="image-grid">`;
+
+                GROUP_PHOTOS.forEach(f => {
+                    const src = `${PEOPLE_DIR}/${GROUP_FOLDER}/${f}`;
+                    html += makeCard(src, f);
+                });
+
+                html += `</div></div>`;
+            }
+
             document.getElementById('content').innerHTML = html;
           });
     </script>

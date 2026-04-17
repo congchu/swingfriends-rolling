@@ -4,10 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>스윙프렌즈 롤링페이퍼 🎵</title>
-  <link rel="apple-touch-icon" sizes="180x180" href="images/favicon_io (2)/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon_io (2)/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="images/favicon_io (2)/favicon-16x16.png">
-  <link rel="icon" type="image/x-icon" href="images/favicon_io (2)/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
+  <link rel="icon" type="image/x-icon" href="images/favicon/favicon.ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
@@ -107,12 +107,12 @@
     }
 
     :nth-child(1 of .tv-wrap) {
-      translate: -130% -50%;
+      translate: -110% -40%;
       z-index: 5;
     }
 
     :nth-child(2 of .tv-wrap) {
-      translate: 30% -50%;
+      translate: 15% -40%;
       z-index: 5;
     }
 
@@ -280,6 +280,7 @@
       font-size: clamp(2rem, 7vw, 4.5rem);
       font-weight: 700;
       line-height: 1;
+      max-width: 510px;
       text-shadow:
         3px 3px 0 rgba(170,50,100,.8),
         0 0 60px rgba(255,100,180,.4);
@@ -432,6 +433,8 @@
 
     .group-photo-btn {
       display: block;
+      position: relative;
+      z-index: 10;
       max-width: 320px;
       margin: 48px auto 0;
       padding: 16px 28px;

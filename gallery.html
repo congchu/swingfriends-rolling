@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>단체사진 | 스윙프렌즈</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="images/favicon_io (2)/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon_io (2)/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="images/favicon_io (2)/favicon-16x16.png">
+  <link rel="icon" type="image/x-icon" href="images/favicon_io (2)/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>
+    @font-face {
+      font-family: 'RoundedFixedsys';
+      src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/DungGeunMo.woff') format('woff');
+      font-weight: normal;
+      font-display: swap;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'RoundedFixedsys', monospace;
+      color: #fff;
+      min-height: 100vh;
+      background:
+        radial-gradient(ellipse 80% 50% at 20% 20%, rgba(255,180,220,.35) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 40% at 80% 30%, rgba(200,160,255,.3) 0%, transparent 50%),
+        radial-gradient(circle at 50% 80%, rgba(255,200,150,.2) 0%, transparent 50%),
+        linear-gradient(160deg, #2a1028 0%, #1a0a2e 40%, #0d0520 100%);
+      background-attachment: fixed;
+    }
+
+    /* nav */
+    .gallery-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 14px 20px;
+      background: rgba(10,5,20,.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,140,160,.2);
+    }
+
+    .nav-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+      font-size: .95rem;
+      color: rgba(255,180,210,.8);
+      padding: 6px 14px;
+      border: 1px solid rgba(255,140,160,.3);
+      border-radius: 20px;
+      transition: all .2s;
+    }
+    .nav-back:hover {
+      background: rgba(255,100,140,.15);
+      color: #fff;
+    }
+
+    .nav-title {
+      font-size: 1.1rem;
+      letter-spacing: .1em;
+      color: rgba(255,200,220,.8);
+    }
+
+    /* content */
+    .gallery-header {
+      text-align: center;
+      padding: 48px 20px 24px;
+    }
+
+    .gallery-header h1 {
+      font-size: clamp(1.8rem, 5vw, 2.6rem);
+      letter-spacing: .06em;
+      text-shadow: 0 0 30px rgba(255,105,180,.3);
+      margin-bottom: 8px;
+    }
+
+    .gallery-header p {
+      font-size: clamp(.8rem, 1.6vw, .95rem);
+      color: rgba(255,200,220,.5);
+      letter-spacing: .12em;
+    }
+
+    /* photo grid */
+    .gallery-grid {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px 16px 80px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 16px;
+    }
+
+    .gallery-item {
+      border-radius: 12px;
+      overflow: hidden;
+      border: 2px solid rgba(255,140,160,.3);
+      box-shadow: 0 4px 20px rgba(0,0,0,.3);
+      transition: transform .3s, border-color .3s, box-shadow .3s;
+      cursor: pointer;
+    }
+    .gallery-item:hover {
+      transform: translateY(-4px) scale(1.02);
+      border-color: rgba(255,220,240,.7);
+      box-shadow: 0 8px 32px rgba(255,105,180,.2);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
+    /* empty state */
+    .empty-state {
+      text-align: center;
+      padding: 80px 20px;
+    }
+    .empty-emoji {
+      font-size: 3rem;
+      margin-bottom: 16px;
+    }
+    .empty-text {
+      font-size: 1.2rem;
+      color: rgba(255,200,230,.8);
+      margin-bottom: 8px;
+    }
+    .empty-sub {
+      font-size: .9rem;
+      color: rgba(255,180,210,.5);
+    }
+
+    /* lightbox */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(0,0,0,.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity .3s, visibility .3s;
+      cursor: pointer;
+    }
+    .lightbox.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    .lightbox img {
+      max-width: 92vw;
+      max-height: 90vh;
+      object-fit: contain;
+      border-radius: 8px;
+    }
+    .lightbox-close {
+      position: absolute;
+      top: 16px;
+      right: 20px;
+      background: none;
+      border: none;
+      color: rgba(255,255,255,.7);
+      font-size: 2rem;
+      cursor: pointer;
+    }
+
+    @media (max-width: 600px) {
+      .gallery-grid {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="gallery-nav">
+    <a href="index.html" class="nav-back">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      홈
+    </a>
+    <span class="nav-title">단체사진</span>
+  </nav>
+
+  <div class="gallery-header">
+    <h1>단체사진 모아보기</h1>
+    <p>함께한 순간들</p>
+  </div>
+
+  <div class="gallery-grid" id="galleryGrid"></div>
+  <div class="empty-state" id="emptyState" style="display:none">
+    <p class="empty-emoji">📷</p>
+    <p class="empty-text">아직 단체사진이 없어요</p>
+    <p class="empty-sub">곧 추가될 예정이에요!</p>
+  </div>
+
+  <!-- lightbox -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close">&times;</button>
+    <img src="" alt="단체사진" id="lightboxImg">
+  </div>
+
+  <script src="js/paths.js"></script>
+  <script>
+    const grid = document.getElementById('galleryGrid');
+    const empty = document.getElementById('emptyState');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+
+    if (!GROUP_PHOTOS || GROUP_PHOTOS.length === 0) {
+      grid.style.display = 'none';
+      empty.style.display = 'block';
+    } else {
+      grid.innerHTML = GROUP_PHOTOS.map(file => {
+        const src = PEOPLE_DIR + '/' + GROUP_FOLDER + '/' + file;
+        return '<div class="gallery-item"><img src="' + src + '" alt="단체사진" loading="lazy"></div>';
+      }).join('');
+
+      // lightbox
+      grid.addEventListener('click', function(e) {
+        var img = e.target.closest('.gallery-item img');
+        if (img) {
+          lightboxImg.src = img.src;
+          lightbox.classList.add('active');
+        }
+      });
+    }
+
+    lightbox.addEventListener('click', function() {
+      lightbox.classList.remove('active');
+    });
+  </script>
+</body>
+</html>
