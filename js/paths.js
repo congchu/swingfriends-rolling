@@ -7,7 +7,7 @@
 const PEOPLE_DIR = 'images/people';
 
 const GROUP_FOLDER = '0-group';
-const GROUP_PHOTOS = ['1.jpeg', '2.jpeg', '3.jpeg', '4.jpeg', '5.jpeg', '6.jpeg', '7.jpeg', '8.jpeg', '9.jpeg', '11.jpeg', '12.jpeg', '13.jpeg', '14.jpeg', '15.jpeg', '16.jpeg', '17.jpeg', '18.jpeg', '19.jpeg', '20.jpeg', '21.jpeg', '22.gif', '23.jpeg', '24.jpeg', '25.jpeg', '26.jpeg', '27.jpeg', '28.jpeg', '29.jpeg', '30.jpeg', '31.jpeg', '32.jpeg', '33.jpeg', '34.jpeg', '35.jpeg'];
+const GROUP_PHOTOS = ['1.webp', '2.webp', '3.webp', '4.webp', '5.webp', '6.webp', '7.webp', '8.webp', '9.webp', '11.webp', '12.webp', '13.webp', '14.webp', '15.webp', '16.webp', '17.webp', '18.webp', '19.webp', '20.webp', '21.webp', '22.gif', '23.webp', '24.webp', '25.webp', '26.webp', '27.webp', '28.webp', '29.webp', '30.webp', '31.webp', '32.webp', '33.webp', '34.webp', '35.webp'];
 
 const PEOPLE_FOLDER = {
   jerry: '1-jerry',
@@ -25,30 +25,30 @@ const PEOPLE_FOLDER = {
 
 // 뱃지 이미지 (index.html 카드용)
 const PEOPLE_BADGES = {
-  jerry: ['badge-1.png', 'badge-2.png'],
-  redshoes: ['badge-1.png', 'badge-2.png'],
-  songhi: ['badge-1.png', 'badge-2.png'],
-  gray: ['badge-1.png', 'badge-2.png'],
-  seobuk: ['badge-2.png', 'badge-3.png'],
-  hyo: ['badge-1.png'],
-  smaller: ['badge-1.png', 'badge-2.png'],
-  danny: ['badge-1.jpg', 'badge-2.png'],
-  iri: ['badge-1.png', 'badge-2.png'],
-  dajeong: ['badge-1.png', 'badge-2.png'],
-  choco: ['badge-1.png', 'badge-2.png']
+  jerry: ['badge-1.webp', 'badge-2.webp'],
+  redshoes: ['badge-1.webp', 'badge-2.webp'],
+  songhi: ['badge-1.webp', 'badge-2.webp'],
+  gray: ['badge-1.webp', 'badge-2.webp'],
+  seobuk: ['badge-2.webp', 'badge-3.webp'],
+  hyo: ['badge-1.webp'],
+  smaller: ['badge-1.webp', 'badge-2.webp'],
+  danny: ['badge-1.webp', 'badge-2.webp'],
+  iri: ['badge-1.webp', 'badge-2.webp'],
+  dajeong: ['badge-1.webp', 'badge-2.webp'],
+  choco: ['badge-1.webp', 'badge-2.webp']
 };
 
 // 활동 사진 (person.html 슬라이더용)
 const PEOPLE_PHOTOS = {
-  jerry: ['1.jpeg', '2.png', '3.png', '5.jpg', '6.jpeg', '6.jpg', '9.jpeg', '8.jpeg', '7.jpeg', '11.jpeg'],
-  redshoes: ['1.jpeg', '2.png', '3.png', '5.png', '6.jpg', '7.jpeg', '7.jpg'],
-  songhi: ['14.jpeg', '2.png', '3.png', '4.png', '13.jpeg', '6.jpeg', '7.png', '9.jpg', '10.jpeg', '11.jpeg', '12.jpeg'],
-  gray: ['1.jpeg', '2.jpeg', '3.png', '5.jpeg', '6.jpeg', '6.png', '7.jpeg', '8.jpeg', '9.jpeg', '11.jpeg', '12.jpeg', '13.jpeg'],
-  seobuk: ['1.png', '2.png', '3.png', '4.jpg', '5.jpeg', '6.jpg', '8.jpeg', '10.jpeg'],
-  hyo: ['1.png', '3.jpeg', '4.jpeg', '5.jpeg'],
-  smaller: ['1.jpeg', '2.png', '3.png', '5.jpeg', '6.jpeg', '6.png', '7.jpeg', '8.png', '9.png'],
-  danny: ['2.jpeg', '3.png', '4.png', '5.jpg', '5.jpeg'],
-  iri: ['1.jpg', '2.jpg'],
-  dajeong: ['1.png', '2.jpg', '3.jpeg', '4.jpeg', '5.jpeg'],
-  choco: ['3.jpeg', '1.jpeg', '2.jpeg']
+  jerry: ['1.webp', '2.webp', '3.webp', '5.webp', '6.webp', '6.webp', '9.webp', '8.webp', '7.webp', '11.webp'],
+  redshoes: ['1.webp', '2.webp', '3.webp', '5.webp', '6.webp', '7.webp', '7.webp'],
+  songhi: ['14.webp', '2.webp', '3.webp', '4.webp', '13.webp', '6.webp', '7.webp', '9.webp', '10.webp', '11.webp', '12.webp'],
+  gray: ['1.webp', '2.webp', '3.webp', '5.webp', '6.webp', '6.webp', '7.webp', '8.webp', '9.webp', '11.webp', '12.webp', '13.webp'],
+  seobuk: ['1.webp', '2.webp', '3.webp', '4.webp', '5.webp', '6.webp', '8.webp', '10.webp'],
+  hyo: ['1.webp', '3.webp', '4.webp', '5.webp'],
+  smaller: ['1.webp', '2.webp', '3.webp', '5.webp', '6.webp', '6.webp', '7.webp', '8.webp', '9.webp'],
+  danny: ['2.webp', '3.webp', '4.webp', '5.webp', '5.webp'],
+  iri: ['1.webp', '2.webp'],
+  dajeong: ['1.webp', '2.webp', '3.webp', '4.webp', '5.webp'],
+  choco: ['3.webp', '1.webp', '2.webp']
 };
