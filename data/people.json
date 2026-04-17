@@ -61,7 +61,7 @@
     {
       "id": "seobuk",
       "name": "서벅돔",
-      "role": "도우미 선생님",
+      "role": "도우미님",
       "tagline": "잔소리 뒤에 숨은 알뜰살뜰 챙김의 달인",
       "emoji": "⭐",
       "photo": "images/people/5-seobuk/badge-1.png",
@@ -74,7 +74,7 @@
     {
       "id": "hyo",
       "name": "김효돔",
-      "role": "도우미 선생님",
+      "role": "도우미님",
       "tagline": "묵묵히 자리를 지키는 든든한 서포터",
       "emoji": "✨",
       "photo": "images/people/6-hyo/badge-1.png",
@@ -87,7 +87,7 @@
     {
       "id": "smaller",
       "name": "스말러돔",
-      "role": "도우미 선생님",
+      "role": "도우미님",
       "tagline": "웃지 않는 모습을 본 적 없는 해피 바이러스",
       "emoji": "🌟",
       "photo": "images/people/7-smaller/1.jpeg",
@@ -100,7 +100,7 @@
     {
       "id": "danny",
       "name": "대니돔",
-      "role": "도우미 선생님",
+      "role": "도우미님",
       "tagline": "열정과 미소로 끝까지 함께한 멋진 돔",
       "emoji": "💫",
       "photo": "images/people/8-danny/1.jpg",
@@ -113,7 +113,7 @@
     {
       "id": "iri",
       "name": "이리돔",
-      "role": "도우미 선생님",
+      "role": "도우미님",
       "tagline": "따뜻한 응원과 격려의 아이콘",
       "emoji": "🎵",
       "photo": "images/people/9-iri/badge-1.png",
@@ -126,7 +126,7 @@
     {
       "id": "dajeong",
       "name": "다정돔",
-      "role": "도우미 선생님",
+      "role": "도우미님",
       "tagline": "이름 그대로, 온화한 미소의 다정 그 자체",
       "emoji": "🌸",
       "photo": "images/people/10-dajeong/badge-1.png",
@@ -139,7 +139,7 @@
     {
       "id": "choco",
       "name": "김초코돔",
-      "role": "도우미 선생님",
+      "role": "도우미님",
       "tagline": "소셜의 존재감, 달콤한 해피 바이러스",
       "emoji": "🍫",
       "photo": "images/people/11-choco/badge-1.png",
