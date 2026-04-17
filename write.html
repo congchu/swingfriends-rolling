@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>메시지 남기기 - 스윙프렌즈 롤링페이퍼</title>
+  <meta name="description" content="스윙프렌즈 선생님과 도우미에게 감사 메시지를 남겨주세요">
+  <script src="js/env.js"></script>
+  <script src="js/theme.js"></script>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/themes.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <div class="write-page">
+    <header class="write-header">
+      <a href="index.html" class="write-back">&larr; 홈으로</a>
+      <div class="write-badge">2025 봄학기</div>
+      <h1 class="write-title">감사 메시지 남기기</h1>
+      <p class="write-sub">전하고 싶은 마음을 포스트잇에 적어주세요</p>
+    </header>
+
+    <form id="writeForm" class="write-form">
+      <div class="write-field">
+        <label for="senderName" class="write-label">내 이름 (선택)</label>
+        <input type="text" id="senderName" class="write-input" placeholder="익명으로 남길 수 있어요">
+      </div>
+
+      <div class="write-people" id="peopleList">
+        <!-- JS로 렌더링 -->
+      </div>
+
+      <button type="submit" class="write-submit" id="submitBtn">
+        메시지 보내기
+      </button>
+    </form>
+
+    <div class="write-done" id="writeDone" hidden>
+      <div class="write-done-icon">💌</div>
+      <h2 class="write-done-title">감사합니다!</h2>
+      <p class="write-done-text">소중한 메시지가 전달되었어요</p>
+      <div class="write-done-actions">
+        <button class="write-btn-again" id="btnAgain">한 번 더 쓰기</button>
+        <a href="index.html" class="write-btn-home">홈으로</a>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <p class="footer-text">스윙프렌즈 2025 봄학기</p>
+  </footer>
+
+  <script src="js/write.js"></script>
+</body>
+</html>

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>쌤돔즈 | 스윙프렌즈 롤링페이퍼</title>
+  <style>
+    @font-face {
+      font-family: 'RoundedFixedsys';
+      src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/DungGeunMo.woff') format('woff');
+      font-weight: normal;
+      font-display: swap;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      margin: 0;
+      font-family: 'RoundedFixedsys', monospace;
+      color: #fff;
+      background: #060312;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 60px 20px 80px;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 50% 40% at 50% 40%, rgba(170,50,100,.1) 0%, transparent 70%),
+        radial-gradient(circle at 20% 80%, rgba(68,34,153,.06) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .title {
+      position: relative;
+      z-index: 1;
+      font-size: clamp(1.5rem, 4vw, 2.2rem);
+      text-align: center;
+      letter-spacing: .08em;
+      margin-bottom: 6px;
+    }
+
+    .sub {
+      position: relative;
+      z-index: 1;
+      font-size: clamp(.7rem, 1.4vw, .85rem);
+      color: rgba(255,255,255,.25);
+      letter-spacing: .1em;
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    /* 카드 그리드 */
+    #shelves {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      max-width: 700px;
+      width: 100%;
+    }
+
+    /* 타로카드 */
+    .card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      color: #fff;
+      width: clamp(120px, 26vw, 160px);
+      background: rgba(255,255,255,.03);
+      border: 1px solid rgba(255,140,180,.2);
+      border-radius: 10px;
+      padding: 10px 10px 14px;
+      transition: transform .4s, border-color .3s, box-shadow .3s;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(255,140,180,.6);
+      box-shadow: 0 8px 32px rgba(255,105,180,.12), 0 0 16px rgba(255,105,180,.08);
+    }
+
+    /* 사진 영역 — 세로로 긴 타로 비율 */
+    .card-photo {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      border-radius: 6px;
+      overflow: hidden;
+      margin-bottom: 10px;
+      background: rgba(255,255,255,.04);
+    }
+
+    .card-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(.8) saturate(1.1);
+      transition: filter .3s;
+    }
+
+    .card:hover .card-photo img {
+      filter: brightness(1) saturate(1.2);
+    }
+
+    .card-emoji-fallback {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      background: linear-gradient(160deg, rgba(255,100,180,.1), rgba(100,50,150,.15));
+    }
+
+    /* 이름 */
+    .card-name {
+      font-size: clamp(.8rem, 1.8vw, 1rem);
+      color: rgba(255,200,220,.75);
+      text-align: center;
+      letter-spacing: .06em;
+      transition: color .3s;
+    }
+
+    .card:hover .card-name {
+      color: rgba(255,230,240,.95);
+    }
+
+    /* 반응형 — 데스크탑 */
+    @media (min-width: 768px) {
+      body { padding: 80px 40px 100px; }
+      #shelves { gap: 24px; max-width: 800px; }
+      .card { width: 160px; padding: 12px 12px 16px; }
+      .card-name { font-size: 1.05rem; }
+    }
+
+    /* 반응형 — 모바일 */
+    @media (max-width: 480px) {
+      body { padding: 40px 12px 60px; }
+      #shelves { gap: 12px; }
+      .card { width: clamp(100px, 42vw, 140px); padding: 8px 8px 12px; border-radius: 8px; }
+      .card-photo { border-radius: 4px; }
+      .card-name { font-size: .8rem; }
+      .sub { margin-bottom: 32px; }
+    }
+  </style>
+</head>
+<body>
+
+  <h1 class="title">롤링페이퍼</h1>
+  <p class="sub">한 학기 동안 함께해주셔서 감사합니다</p>
+
+  <div id="shelves"></div>
+
+  <script src="js/env.js"></script>
+  <script>
+    (async () => {
+      try {
+        const pRes = await fetch('data/people.json');
+        const people = await pRes.json();
+        const allPeople = [...people.teachers, ...people.helpers];
+
+        document.getElementById('shelves').innerHTML = allPeople.map(p => `
+          <a class="card" href="person.html?id=${p.id}">
+            <div class="card-photo">
+              ${p.photo
+                ? `<img src="${p.photo}" alt="${p.name}"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                   <div class="card-emoji-fallback" style="display:none">${p.emoji||'🎵'}</div>`
+                : `<div class="card-emoji-fallback">${p.emoji||'🎵'}</div>`}
+            </div>
+            <span class="card-name">${p.name}</span>
+          </a>`
+        ).join('');
+      } catch(e) {
+        console.error(e);
+      }
+    })();
+  </script>
+</body>
+</html>

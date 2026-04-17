@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>롤링페이퍼 | 스윙프렌즈</title>
+  <!-- 환경 설정 & 테마 즉시 적용 (FOUC 방지) -->
+  <script src="js/env.js"></script>
+  <script src="js/theme.js"></script>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/themes.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body class="person-body">
+
+  <!-- ===== LOADING ===== -->
+  <div class="loading-overlay" id="loadingOverlay">
+    <div class="loading-ddakji">
+      <div class="ddakji-inner">
+        <div class="ddakji-front">
+          <img src="" alt="" id="ddakjiImg">
+        </div>
+        <div class="ddakji-back">
+          <img src="" alt="" id="ddakjiImgBack">
+        </div>
+      </div>
+    </div>
+  </div>
+  <style>
+    /* ── 레트로 게임 캐릭터 셀렉트 히어로 ── */
+    @font-face {
+      font-family: 'OmuDaye';
+      src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/omyu_pretty.woff2') format('woff2');
+      font-weight: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'RoundedFixedsys';
+      src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/DungGeunMo.woff') format('woff');
+      font-weight: normal;
+      font-display: swap;
+    }
+
+    .char-hero {
+      background: #1a1a2e;
+      padding: 40px 20px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .char-box {
+      position: relative;
+      width: 100%;
+      max-width: 780px;
+      background:
+        repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(255,255,255,.04) 39px, rgba(255,255,255,.04) 40px),
+        repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(255,255,255,.04) 39px, rgba(255,255,255,.04) 40px),
+        #0a0a14;
+      border: 2px solid rgba(255,140,160,.55);
+      border-radius: 20px;
+      padding: 40px 36px 28px;
+      box-shadow:
+        0 0 30px rgba(255,100,140,.15),
+        0 0 60px rgba(255,100,140,.06),
+        inset 0 0 60px rgba(255,100,140,.03);
+      overflow: hidden;
+    }
+
+    /* CRT 스캔라인 오버레이 */
+    .char-box::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0,0,0,.12) 2px,
+        rgba(0,0,0,.12) 4px
+      );
+      pointer-events: none;
+      z-index: 5;
+      border-radius: 18px;
+    }
+
+    .char-inner {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* 왼쪽 텍스트 */
+    .char-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .char-sub {
+      display: block;
+      font-family: 'RoundedFixedsys', monospace;
+      font-size: .72rem;
+      letter-spacing: .15em;
+      color: rgba(255,140,160,.7);
+      margin-bottom: 8px;
+    }
+
+    .char-name {
+      font-family: 'RoundedFixedsys', monospace;
+      font-size: clamp(2.4rem, 8vw, 3.8rem);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.05;
+      margin-bottom: 24px;
+      text-shadow:
+        0 0 10px rgba(255,255,255,.15);
+      letter-spacing: .04em;
+    }
+
+    /* 세그먼트 스탯 바 */
+    .char-stats {
+      display: flex;
+      gap: 18px;
+      margin-bottom: 12px;
+    }
+
+    .char-stat {
+      flex: 1;
+    }
+
+    .char-stat-label {
+      display: block;
+      font-family: 'RoundedFixedsys', monospace;
+      font-size: .55rem;
+      letter-spacing: .12em;
+      color: rgba(255,255,255,.45);
+      margin-bottom: 6px;
+    }
+
+    .char-stat-bar {
+      height: 10px;
+      background: rgba(255,255,255,.08);
+      border-radius: 2px;
+      overflow: hidden;
+      display: flex;
+      gap: 2px;
+      padding: 2px;
+    }
+
+    .char-stat-fill {
+      height: 100%;
+      background: transparent;
+      border-radius: 1px;
+      position: relative;
+    }
+
+    /* 세그먼트 블록들을 CSS로 생성 */
+    .char-stat-bar {
+      position: relative;
+    }
+
+    .char-stat-fill {
+      background: repeating-linear-gradient(
+        90deg,
+        #ff6b8a 0px,
+        #ff6b8a 6px,
+        transparent 6px,
+        transparent 9px
+      );
+      box-shadow: 0 0 6px rgba(255,107,138,.4);
+    }
+
+    .char-msg-count {
+      font-family: 'RoundedFixedsys', monospace;
+      font-size: .72rem;
+      color: rgba(255,255,255,.35);
+      margin-top: 4px;
+    }
+    .char-msg-count strong {
+      color: #ff9eaf;
+    }
+
+    /* 오른쪽 사진 */
+    .char-photo-area {
+      flex-shrink: 0;
+      width: clamp(160px, 38%, 280px);
+      aspect-ratio: 3/4;
+      overflow: hidden;
+      border-radius: 10px;
+      position: relative;
+    }
+
+    .char-photo-slider {
+      display: flex;
+      width: 200%;
+      height: 100%;
+      transition: transform .4s ease;
+    }
+
+    .char-photo {
+      width: 50%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* 좌우 화살표 */
+    .char-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 10;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(255,140,160,.4);
+      background: rgba(10,10,20,.7);
+      color: rgba(255,180,190,.7);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all .2s;
+      backdrop-filter: blur(4px);
+    }
+
+    .char-arrow:hover {
+      background: rgba(255,100,140,.25);
+      border-color: rgba(255,140,160,.7);
+      color: #fff;
+      box-shadow: 0 0 12px rgba(255,100,140,.3);
+    }
+
+    .char-arrow--left { left: -18px; }
+    .char-arrow--right { right: -18px; }
+
+    /* 도트 */
+    .char-dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 18px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .char-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.15);
+      transition: background .3s, box-shadow .3s;
+      cursor: pointer;
+    }
+
+    .char-dot.active {
+      background: #ff8ca0;
+      box-shadow: 0 0 6px rgba(255,140,160,.5);
+    }
+
+    /* 모바일 */
+    @media (max-width: 600px) {
+      .char-box { padding: 28px 20px 20px; }
+      .char-inner { flex-direction: column-reverse; gap: 20px; }
+      .char-photo-area { width: 65%; align-self: center; }
+      .char-stats { gap: 10px; }
+      .char-arrow--left { left: -10px; }
+      .char-arrow--right { right: -10px; }
+    }
+
+    .loading-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--cream, #faf6f0);
+      transition: opacity .4s, visibility .4s;
+    }
+    .loading-overlay.hide {
+      opacity: 0;
+      visibility: hidden;
+    }
+    .loading-ddakji {
+      width: 160px;
+      height: 160px;
+      perspective: 400px;
+      animation: ddakji-bounce .6s ease-in-out infinite;
+    }
+    .ddakji-inner {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      animation: ddakji-flip 1.2s ease-in-out infinite;
+    }
+    .ddakji-front, .ddakji-back {
+      position: absolute;
+      inset: 0;
+      backface-visibility: hidden;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid var(--gold, #c9a96e);
+      box-shadow: 0 4px 20px rgba(0,0,0,.15);
+    }
+    .ddakji-front img, .ddakji-back img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .ddakji-back {
+      transform: rotateY(180deg);
+    }
+    @keyframes ddakji-bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-18px); }
+    }
+    @keyframes ddakji-flip {
+      0%   { transform: rotateY(0deg); }
+      50%  { transform: rotateY(180deg); }
+      100% { transform: rotateY(360deg); }
+    }
+  </style>
+  <script>
+    (function() {
+      var babies = ['images/baby/1_jerry-1.png','images/baby/2_redshoes-1.png','images/baby/3_songhi-1.png','images/baby/4_gray-1.png'];
+      var shuffled = babies.sort(function() { return Math.random() - 0.5; });
+      document.getElementById('ddakjiImg').src = shuffled[0];
+      document.getElementById('ddakjiImgBack').src = shuffled[1];
+    })();
+  </script>
+
+  <!-- ===== NAV ===== -->
+  <nav class="person-nav">
+    <a href="index.html" class="nav-back">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      홈
+    </a>
+    <div class="nav-people-scroll" id="navPeopleScroll">
+      <!-- JS로 렌더링 -->
+    </div>
+  </nav>
+
+  <!-- ===== CHARACTER SELECT HERO ===== -->
+  <section class="char-hero" id="personHeader">
+    <div class="char-box">
+      <!-- 좌우 슬라이드 버튼 -->
+      <button class="char-arrow char-arrow--left" id="charPrev">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <button class="char-arrow char-arrow--right" id="charNext">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg>
+      </button>
+
+      <div class="char-inner">
+        <!-- 왼쪽: 텍스트 -->
+        <div class="char-info">
+          <span class="char-sub" id="personRoleBadge">//CHOOSE CHARACTER</span>
+          <h1 class="char-name" id="personName"></h1>
+          <div class="char-stats">
+            <div class="char-stat">
+              <span class="char-stat-label">ROLE</span>
+              <div class="char-stat-bar"><div class="char-stat-fill" style="width:85%"></div></div>
+            </div>
+            <div class="char-stat">
+              <span class="char-stat-label">GROOVE</span>
+              <div class="char-stat-bar"><div class="char-stat-fill" style="width:70%"></div></div>
+            </div>
+            <div class="char-stat">
+              <span class="char-stat-label">MESSAGES</span>
+              <div class="char-stat-bar"><div class="char-stat-fill" id="msgStatBar" style="width:50%"></div></div>
+            </div>
+          </div>
+          <p class="char-msg-count" id="personMessageCount"></p>
+        </div>
+
+        <!-- 오른쪽: 사진 슬라이더 -->
+        <div class="char-photo-area">
+          <div class="char-photo-slider" id="charSlider">
+            <img src="" alt="" class="char-photo" id="personPhoto">
+            <img src="" alt="" class="char-photo" id="personPhoto2">
+          </div>
+        </div>
+      </div>
+
+      <!-- 슬라이드 도트 -->
+      <div class="char-dots" id="charDots">
+        <span class="char-dot active"></span>
+        <span class="char-dot"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CORKBOARD ===== -->
+  <main class="corkboard">
+    <div class="corkboard-inner" id="corkboardInner">
+      <!-- JS로 렌더링 -->
+    </div>
+    <div class="empty-state" id="emptyState" style="display:none">
+      <p class="empty-emoji">✉️</p>
+      <p class="empty-text">아직 메시지가 없어요</p>
+      <p class="empty-sub">첫 번째 감사 메시지를 기다리는 중이에요</p>
+    </div>
+  </main>
+
+  <!-- ===== PREV / NEXT ===== -->
+  <div class="person-nav-arrows">
+    <button class="arrow-btn" id="prevBtn" disabled>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg>
+      <span id="prevName"></span>
+    </button>
+    <button class="arrow-btn arrow-btn-right" id="nextBtn" disabled>
+      <span id="nextName"></span>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg>
+    </button>
+  </div>
+
+  <!-- PapaParse CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/person.js"></script>
+</body>
+</html>

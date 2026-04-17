@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>스윙프렌즈 롤링페이퍼 🎵</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>
+    @font-face {
+      font-family: 'OmuDaye';
+      src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/omyu_pretty.woff2') format('woff2');
+      font-weight: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: 'Independent';
+      src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Dokrip.woff') format('woff');
+      font-weight: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: 'RoundedFixedsys';
+      src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/DungGeunMo.woff') format('woff');
+      font-weight: normal;
+      font-display: swap;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    /* ===== REFERENCE CSS 그대로 ===== */
+    body {
+      margin: 0;
+      font-family: 'RoundedFixedsys', 'Noto Sans KR', sans-serif;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    .hero {
+      position: relative;
+      height: 100dvh;
+      perspective: 460px;
+      perspective-origin: 50% 54%;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at -20% bottom, #111, transparent 40%),
+        radial-gradient(circle at 120% bottom, #111, transparent 40%),
+        radial-gradient(circle at top right, #429, transparent),
+        radial-gradient(circle at top left, #a35 30%, #000);
+    }
+
+    .floor {
+      width: 100dvw;
+      height: 1000dvh;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform-style: preserve-3d;
+      transform:
+        translate(-50%, -50%)
+        rotateX(90deg)
+        translateZ(-5dvmin);
+      background:
+        repeating-linear-gradient(
+          35deg,
+          transparent,
+          hotpink, pink 80px,
+          transparent 120px,
+          transparent 200px
+        ),
+        repeating-linear-gradient(
+          to bottom,
+          violet,
+          #104a, #2068 40px,
+          rebeccapurple 80px,
+          violet 160px
+        );
+      background-size: 200% 200%;
+      animation: floor 30s linear infinite;
+    }
+
+    @keyframes floor {
+      to {
+        transform:
+          translate(-50%, -50%)
+          rotateX(90deg)
+          translateZ(-52px)
+          translateY(10.47%);
+      }
+    }
+
+    /* ===== TITLE — drink-milk 스타일 그대로 ===== */
+    .drink-milk {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      translate: -50% 120%;
+      width: 100%;
+      padding: 10dvmin;
+      font-size: 7dvmin;
+      text-align: center;
+      font-family: 'RoundedFixedsys', "Cormorant Garamond", serif;
+      font-weight: 300;
+      letter-spacing: 0.3em;
+      word-spacing: .05em;
+    }
+
+    .drink-milk .skate {
+      display: none;
+    }
+
+    .drink-milk .word {
+      position: absolute;
+      translate: -50% -60%;
+      padding: .2em;
+      text-align: center;
+      font-size: 1.25em;
+      color: transparent;
+      -webkit-text-stroke: 20px rgba(255,105,180,.7);
+      animation: word 1.5s linear infinite;
+    }
+
+    :nth-child(1 of .drink-milk .word) { animation-delay: 0; }
+    :nth-child(2 of .drink-milk .word) { animation-delay: .25s; }
+    :nth-child(3 of .drink-milk .word) { animation-delay: .5s; }
+    :nth-child(4 of .drink-milk .word) { animation-delay: .75s; }
+    :nth-child(5 of .drink-milk .word) { animation-delay: 1s; }
+    :nth-child(6 of .drink-milk .word) { animation-delay: 1.25s; }
+
+    @keyframes word {
+      from, 10%, 27%, to { visibility: hidden; }
+      20% { visibility: visible; }
+    }
+
+    /* ===== TV WRAP — 프레임 + 스크린 + 이름 통합 ===== */
+    .tv-wrap {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 500px;
+      pointer-events: none;
+    }
+
+    :nth-child(1 of .tv-wrap) {
+      translate: -130% -50%;
+      z-index: 5;
+    }
+
+    :nth-child(2 of .tv-wrap) {
+      translate: 30% -50%;
+      z-index: 5;
+    }
+
+    .tv-wrap img.tv {
+      width: 100%;
+      display: block;
+      filter: hue-rotate(100deg) saturate(3);
+      transition: all .5s;
+      position: relative;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    :nth-child(2 of .tv-wrap) img.tv {
+      rotate: y 180deg;
+    }
+
+    /* ===== SCREEN (TV 안에 배치) ===== */
+    .screen {
+      position: absolute;
+      top: 11%;
+      left: 2%;
+      width: 95%;
+      height: 81%;
+      overflow: hidden;
+      border-radius: 8px;
+      background: url('https://assets.codepen.io/25387/noise.gif');
+      cursor: pointer;
+      pointer-events: all;
+      z-index: 1;
+    }
+
+    .screen::before {
+      content: "";
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 100%; height: 30%;
+      background: radial-gradient(
+        ellipse 90% 140% at 50% 100%,
+        transparent 60%, #000f, transparent
+      );
+      rotate: .5turn;
+      opacity: var(--shine-opacity, 0);
+      z-index: 1;
+    }
+
+    .screen::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 15%;
+      background: radial-gradient(
+        ellipse 85% 130% at 50% 100%,
+        transparent 60%, #f6c6, transparent
+      );
+      opacity: var(--shine-opacity, 0);
+    }
+
+    .screen video {
+      position: absolute;
+      top: 50%; left: 50%;
+      translate: -50% -50%;
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
+
+    :nth-child(1 of .tv-wrap) .screen {
+      --shine-opacity: .5;
+      left: 45px;
+      transform: perspective(600px) rotateY(14deg);
+      transform-origin: left center;
+    }
+    /* 오른쪽 TV — 반대 방향 원근감 */
+    :nth-child(2 of .tv-wrap) .screen {
+      --shine-opacity: 1;
+      left: auto;
+      right: 45px;
+      transform: perspective(600px) rotateY(-14deg);
+      transform-origin: right center;
+    }
+
+    /* ===== PARROT & LIGHTNING — 그대로 ===== */
+    .parrot {
+      position: absolute;
+      top: 10%;
+      left: 110%;
+      animation: parrot 8s 1.5s infinite;
+    }
+
+    @keyframes parrot {
+      30%, to { left: -30%; }
+    }
+
+    .lightning {
+      position: absolute;
+      top: 0;
+      right: 0;
+      translate: 20% -15%;
+    }
+
+    .lightning img {
+      width: 20dvmin;
+      rotate: 60deg;
+      opacity: .2;
+      scale: .6;
+    }
+
+    .lightning img:hover {
+      opacity: 1;
+    }
+
+    /* ===== TV NAMES (TV 아래 고정) ===== */
+    .tv-names {
+      position: relative;
+      z-index: 15;
+      display: flex;
+      gap: 6px;
+      align-items: center;
+      justify-content: center;
+      font-family: 'RoundedFixedsys', serif;
+      font-size: clamp(.75rem, 1.8vw, .95rem);
+      letter-spacing: .05em;
+      white-space: nowrap;
+      text-shadow: 0 2px 10px rgba(0,0,0,.6);
+      margin-top: 4px;
+      pointer-events: all;
+    }
+
+    :nth-child(1 of .tv-wrap) .tv-names {
+      transform: perspective(460px) rotateY(30deg);
+    }
+
+    :nth-child(2 of .tv-wrap) .tv-names {
+      transform: perspective(460px) rotateY(-30deg);
+    }
+
+    .tv-names a {
+      color: rgba(255,255,255,.75);
+      text-decoration: none;
+      transition: color .3s, text-shadow .3s;
+    }
+    .tv-names a:hover {
+      color: #ff69b4;
+      text-shadow: 0 0 12px rgba(255,105,180,.5);
+    }
+
+    .tv-names .sep {
+      color: rgba(255,255,255,.25);
+      font-size: .7em;
+    }
+
+    /* ===== TOP TITLE ===== */
+    .top-title {
+      position: absolute;
+      top: 20%;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 20;
+      text-align: center;
+      animation: fadeIn 1.2s ease both;
+    }
+
+    .top-title-main {
+      font-family: 'Independent', serif;
+      font-size: clamp(2rem, 7vw, 4.5rem);
+      font-weight: 700;
+      line-height: 1;
+      text-shadow:
+        3px 3px 0 rgba(170,50,100,.8),
+        0 0 60px rgba(255,100,180,.4);
+      letter-spacing: .05em;
+      white-space: nowrap;
+    }
+
+    .top-title-sub {
+      font-family: 'RoundedFixedsys', serif;
+      font-weight: 300;
+      font-style: italic;
+      font-size: clamp(.9rem, 2.5vw, 1.4rem);
+      letter-spacing: .3em;
+      color: rgba(255,255,255,.5);
+      margin-top: 6px;
+    }
+
+    /* ===== SCROLL HINT ===== */
+    .scroll-hint {
+      position: absolute;
+      bottom: 4%;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: clamp(.75rem, 1.5vw, .85rem);
+      color: rgba(255,255,255,.25);
+      letter-spacing: .1em;
+      z-index: 20;
+      animation: fadeIn 1.5s 2s ease both, bounce 2s 3s ease-in-out infinite;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; } to { opacity: 1; }
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(-8px); }
+    }
+
+    /* ===== PEOPLE SECTION ===== */
+    .people-section {
+      position: relative;
+      z-index: 10;
+      background:
+        radial-gradient(ellipse 60% 40% at 50% 30%, rgba(170,50,100,.12) 0%, transparent 70%),
+        radial-gradient(circle at 70% 80%, rgba(68,34,153,.08) 0%, transparent 50%),
+        #0a0008;
+      min-height: 100vh;
+      padding: 64px 20px 80px;
+    }
+
+    .section-title {
+      text-align: center;
+      font-family: 'RoundedFixedsys', serif;
+      font-size: clamp(1.6rem, 4.5vw, 2.4rem);
+      color: #fff;
+      text-shadow: 0 0 30px rgba(255,105,180,.3);
+      margin-bottom: 8px;
+    }
+
+    .section-sub {
+      text-align: center;
+      font-family: 'RoundedFixedsys', serif;
+      font-size: clamp(.75rem, 1.6vw, .9rem);
+      color: rgba(255,255,255,.3);
+      letter-spacing: .12em;
+      margin-bottom: 48px;
+    }
+
+    #shelves {
+      max-width: 480px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .shelf-group {
+      width: 100%;
+    }
+
+    .shelf {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+    }
+
+    /* 카드 — 이름만, 큼직하게 */
+    .shelf-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      color: #fff;
+      flex: 1;
+      padding: 28px 16px;
+      background: rgba(255,255,255,.03);
+      border: 1px solid rgba(255,140,180,.25);
+      border-radius: 14px;
+      transition: transform .3s, border-color .3s, box-shadow .3s, background .3s;
+    }
+
+    .shelf-item:hover {
+      transform: translateY(-4px);
+      background: rgba(255,255,255,.06);
+      border-color: rgba(255,140,180,.55);
+      box-shadow: 0 0 20px rgba(255,105,180,.15);
+    }
+
+    .shelf-item-name {
+      font-family: 'RoundedFixedsys', serif;
+      font-size: clamp(1.1rem, 3vw, 1.5rem);
+      color: rgba(255,180,200,.8);
+      text-align: center;
+      transition: color .3s;
+    }
+
+    .shelf-item:hover .shelf-item-name {
+      color: rgba(255,220,235,.95);
+    }
+
+    @media (max-width: 600px) {
+      #shelves { max-width: 340px; }
+      .shelf { gap: 12px; }
+    }
+
+    /* 태블릿 */
+    @media (max-width: 1024px) {
+      .tv-wrap {
+        width: 280px;
+      }
+      .screen {
+        top: 8%;
+        left: 2%;
+        width: 112%;
+      }
+      :nth-child(1 of .tv-wrap) .screen {
+        left: 45px;
+        transform: perspective(600px) rotateY(32deg);
+        transform-origin: left center;
+      }
+      :nth-child(2 of .tv-wrap) .screen {
+        right: 45px;
+        transform: perspective(600px) rotateY(-32deg);
+        transform-origin: right center;
+      }
+    }
+
+    /* 모바일 */
+    @media (max-width: 600px) {
+      .hero { perspective: 320px; }
+      .top-title { top: 10%; }
+
+      .tv-wrap {
+        width: 280px;
+      }
+
+      /* 왼쪽 TV → 위 중앙 */
+      :nth-child(1 of .tv-wrap) {
+        translate: -50% -105%;
+      }
+      /* 오른쪽 TV → 아래 중앙 */
+      :nth-child(2 of .tv-wrap) {
+        translate: -50% 55%;
+      }
+      :nth-child(2 of .tv-wrap) img.tv {
+        rotate: y 180deg;
+      }
+
+      /* 모바일 스크린 위치 */
+      .screen {
+        top: 8%;
+        left: 2%;
+        width: 120%;
+        height: 81%;
+      }
+      :nth-child(1 of .tv-wrap) .screen {
+        left: 50px;
+        transform: perspective(600px) rotateY(40deg);
+        transform-origin: left center;
+      }
+      :nth-child(2 of .tv-wrap) .screen {
+        right: 52px;
+        transform: perspective(600px) rotateY(-40deg);
+        transform-origin: right center;
+      }
+
+      /* 모바일에서는 이름 기울기 제거 */
+      :nth-child(1 of .tv-wrap) .tv-names,
+      :nth-child(2 of .tv-wrap) .tv-names {
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== HERO: 레퍼런스 그대로 ===== -->
+  <section class="hero">
+    <div class="floor"></div>
+
+    <div class="top-title">
+      <div class="top-title-main">스윙프렌즈 102 뽀글즈 쌤돔즈</div>
+      <div class="top-title-sub">무한한 감사를 드립니다.</div>
+    </div>
+
+    <h1 class="drink-milk">
+      <span class="skate">🕺💃</span>
+      <span class="word">스윙</span>
+      <span class="word">프렌즈</span>
+      <span class="word">2025</span>
+      <span class="word">봄</span>
+      <span class="word">학기</span>
+      <span class="word">🎵</span>
+    </h1>
+
+    <div class="tv-wrap">
+      <a class="screen" href="#people">
+        <video src="images/swing-video.mp4" autoplay loop muted playsinline></video>
+      </a>
+      <img class="tv" src="https://assets.codepen.io/25387/tv.png" alt="">
+      <div class="tv-names">
+        <a href="person.html?id=jerry">제리</a>
+        <span class="sep">/</span>
+        <a href="person.html?id=redshoes">빨간구두</a>
+      </div>
+    </div>
+
+    <div class="tv-wrap">
+      <a class="screen" href="#people">
+        <video src="images/swing-video2.mp4" autoplay loop muted playsinline></video>
+      </a>
+      <img class="tv" src="https://assets.codepen.io/25387/tv-2.png" alt="">
+      <div class="tv-names">
+        <a href="person.html?id=songhi">송히</a>
+        <span class="sep">/</span>
+        <a href="person.html?id=gray">그레이</a>
+      </div>
+    </div>
+
+    <img class="parrot" src="https://assets.codepen.io/25387/parrot.gif" alt="parrot">
+
+    <a class="lightning" href="#people">
+      <img src="https://assets.codepen.io/25387/Lightning02.gif" alt="lightning">
+    </a>
+
+    <a class="scroll-hint" href="#people">클릭하면 감사 메시지를 볼 수 있어요 ↓</a>
+  </section>
+
+  <!-- ===== PEOPLE (선반 스타일) ===== -->
+  <section class="people-section" id="people">
+    <h2 class="section-title">롤링페이퍼</h2>
+    <p class="section-sub">한 학기 동안 함께해주셔서 감사합니다</p>
+
+    <div id="shelves"></div>
+  </section>
+
+  <script src="js/env.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+  <script>
+    // Google Sheets 컬럼 매핑
+    const COL_SHEET = {
+      "1) 제리 쌤":"jerry","2) 빨간구두 쌤":"redshoes","3) 송히 쌤":"songhi","4) 그레이 쌤":"gray",
+      "5) 서벅 돔":"seobuk","6) 효 돔":"hyo","7) 스말러 돔":"smaller","8) 대니 돔":"danny",
+      "9) 이리 돔":"iri","10) 다정 돔":"dajeong","11) 초코 돔":"choco"
+    };
+    const SENDER_SHEET = "작성자분의 닉네임을 알려주세요!";
+    // 로컬 CSV 컬럼 매핑
+    const COL_CSV = {
+      "제리":"jerry","빨간구두":"redshoes","송히":"songhi","그레이":"gray",
+      "서벅돔":"seobuk","효돔":"hyo","스말러돔":"smaller","대니돔":"danny",
+      "이리돔":"iri","다정돔":"dajeong","초코돔":"choco"
+    };
+    const SENDER_CSV = "이름(선택)";
+
+    const GLOWS = [
+      'rgba(255,100,180,.4)','rgba(100,180,255,.4)','rgba(255,200,100,.4)',
+      'rgba(180,100,255,.4)','rgba(100,255,200,.4)','rgba(255,150,100,.4)',
+      'rgba(150,200,255,.4)'
+    ];
+
+    function parseRows(rows, colMap, senderCol) {
+      const msgs = new Map();
+      Object.values(colMap).forEach(id => msgs.set(id, []));
+      rows.forEach(row => {
+        const sender = (row[senderCol]||'').trim()||'익명';
+        Object.entries(colMap).forEach(([col,id]) => {
+          const m = (row[col]||'').trim();
+          if (m) msgs.get(id).push({ from:sender, message:m });
+        });
+      });
+      return msgs;
+    }
+
+    async function loadData() {
+      const pRes = await fetch('data/people.json');
+      const people = await pRes.json();
+      let msgs;
+
+      const sheetUrl = (typeof ENV !== 'undefined' && ENV.SCRIPT_URL) || '';
+      if (sheetUrl) {
+        try {
+          const res = await fetch(sheetUrl);
+          const json = await res.json();
+          const rows = json.rows || [];
+          // sessionStorage에 캐시 → person.html에서 재사용
+          try { sessionStorage.setItem('swing_sheet_rows', JSON.stringify(rows)); } catch(_) {}
+          msgs = parseRows(rows, COL_SHEET, SENDER_SHEET);
+        } catch(e) {
+          console.warn('Google Sheets 로드 실패, 로컬 CSV 폴백:', e);
+          const cRes = await fetch('data/messages.csv');
+          const csv = Papa.parse(await cRes.text(), { header:true, skipEmptyLines:true, transformHeader:h=>h.trim() });
+          msgs = parseRows(csv.data, COL_CSV, SENDER_CSV);
+        }
+      } else {
+        const cRes = await fetch('data/messages.csv');
+        const csv = Papa.parse(await cRes.text(), { header:true, skipEmptyLines:true, transformHeader:h=>h.trim() });
+        msgs = parseRows(csv.data, COL_CSV, SENDER_CSV);
+      }
+
+      return { people, msgs };
+    }
+
+    const MATERIAL_MAP = {
+      jerry:'1-jerry', redshoes:'2-redshoes', songhi:'3-songhi', gray:'4-gray',
+      seobuk:'5-seobuk', hyo:'6-hyo', smaller:'7-smaller', danny:'8-danny',
+      iri:'9-iri', dajeong:'10-dajeong', choco:'11-choco'
+    };
+
+    function renderShelves(allPeople, msgs) {
+      const container = document.getElementById('shelves');
+      let html = '';
+
+      for (let i = 0; i < allPeople.length; i += 2) {
+        const pair = allPeople.slice(i, i + 2);
+        html += '<div class="shelf-group"><div class="shelf">';
+        pair.forEach((p, j) => {
+          const idx = i + j;
+          html += `
+            <a class="shelf-item" href="person.html?id=${p.id}" style="--glow:${GLOWS[idx%GLOWS.length]}">
+              <span class="shelf-item-name">${p.name}</span>
+            </a>`;
+        });
+        html += '</div></div>';
+      }
+
+      container.innerHTML = html;
+    }
+
+    (async () => {
+      try {
+        // people.json만 먼저 로드해서 카드 즉시 렌더링
+        const pRes = await fetch('data/people.json');
+        const people = await pRes.json();
+        const allPeople = [...people.teachers, ...people.helpers];
+        renderShelves(allPeople);
+
+        // 메시지는 백그라운드에서 로드 (person.html용 캐시)
+        loadData();
+      } catch(e) {
+        console.error(e);
+      }
+    })();
+  </script>
+</body>
+</html>
