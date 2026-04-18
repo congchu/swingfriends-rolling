@@ -15,7 +15,7 @@ const SHEET_URL = (typeof ENV !== "undefined" && ENV.SCRIPT_URL) || "";
 // (구글 폼 질문 텍스트 그대로)
 const COLUMN_MAP = {
   "1) 제리 쌤":    "jerry",
-  "2) 빨간구두 쌤": "redshoes",
+  "2) 빨강구두 쌤": "redshoes",
   "3) 송히 쌤":    "songhi",
   "4) 그레이 쌤":  "gray",
   "5) 서벅 돔":    "seobuk",
@@ -30,7 +30,7 @@ const COLUMN_MAP = {
 // 로컬 CSV용 매핑 (기존 폴백)
 const COLUMN_MAP_CSV = {
   "제리":    "jerry",
-  "빨간구두": "redshoes",
+  "빨강구두": "redshoes",
   "송히":    "songhi",
   "그레이":  "gray",
   "서벅돔":  "seobuk",

@@ -10,7 +10,7 @@ const SCRIPT_URL = "";
 
 const PEOPLE = [
   { id: "jerry",    name: "제리",    role: "리더 선생님",   emoji: "🕺", group: "teacher" },
-  { id: "redshoes", name: "빨간구두", role: "팔로워 선생님", emoji: "👠", group: "teacher" },
+  { id: "redshoes", name: "빨강구두", role: "팔로워 선생님", emoji: "👠", group: "teacher" },
   { id: "songhi",   name: "송히",    role: "팔로워 선생님", emoji: "💃", group: "teacher" },
   { id: "gray",     name: "그레이",  role: "리더 선생님",   emoji: "🎶", group: "teacher" },
   { id: "seobuk",   name: "서벅돔",  emoji: "⭐", role: "도우미", group: "helper" },
