@@ -146,7 +146,7 @@ function renderNavPeople(allPeople, currentIdx) {
     <button
       class="nav-person-btn${i === currentIdx ? " active" : ""}"
       onclick="location.href='person.html?id=${p.id}'"
-    >${p.name}</button>
+    >${p.name}${p.role && p.role.includes('선생님') ? '쌤' : ''}</button>
   `).join("");
 
   // 현재 버튼이 보이도록 스크롤
