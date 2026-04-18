@@ -13,33 +13,36 @@ const SHEET_URL = (typeof ENV !== "undefined" && ENV.SCRIPT_URL) || "";
 
 // Google Sheets 컬럼 헤더 → person id 매핑
 // (구글 폼 질문 텍스트 그대로)
+// 빨간구두 → 빨강구두로 이름이 바뀌어서, 과거/현재 헤더 둘 다 읽어준다.
 const COLUMN_MAP = {
-  "1) 제리 쌤":    "jerry",
+  "1) 제리 쌤":     "jerry",
+  "2) 빨간구두 쌤": "redshoes",
   "2) 빨강구두 쌤": "redshoes",
-  "3) 송히 쌤":    "songhi",
-  "4) 그레이 쌤":  "gray",
-  "5) 서벅 돔":    "seobuk",
-  "6) 효 돔":      "hyo",
-  "7) 스말러 돔":  "smaller",
-  "8) 대니 돔":    "danny",
-  "9) 이리 돔":    "iri",
-  "10) 다정 돔":   "dajeong",
-  "11) 초코 돔":   "choco",
+  "3) 송히 쌤":     "songhi",
+  "4) 그레이 쌤":   "gray",
+  "5) 서벅 돔":     "seobuk",
+  "6) 효 돔":       "hyo",
+  "7) 스말러 돔":   "smaller",
+  "8) 대니 돔":     "danny",
+  "9) 이리 돔":     "iri",
+  "10) 다정 돔":    "dajeong",
+  "11) 초코 돔":    "choco",
 };
 
 // 로컬 CSV용 매핑 (기존 폴백)
 const COLUMN_MAP_CSV = {
-  "제리":    "jerry",
+  "제리":     "jerry",
+  "빨간구두": "redshoes",
   "빨강구두": "redshoes",
-  "송히":    "songhi",
-  "그레이":  "gray",
-  "서벅돔":  "seobuk",
-  "효돔":    "hyo",
+  "송히":     "songhi",
+  "그레이":   "gray",
+  "서벅돔":   "seobuk",
+  "효돔":     "hyo",
   "스말러돔": "smaller",
-  "대니돔":  "danny",
-  "이리돔":  "iri",
-  "다정돔":  "dajeong",
-  "초코돔":  "choco",
+  "대니돔":   "danny",
+  "이리돔":   "iri",
+  "다정돔":   "dajeong",
+  "초코돔":   "choco",
 };
 
 // 이름 컬럼 헤더
